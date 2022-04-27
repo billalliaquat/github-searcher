@@ -7,11 +7,11 @@ import InputDropdown from '../components/inputDropdown';
 import UserGrid from '../components/UserGrid';
 
 function SearchPage() {
-    const [searchTypeTemp, setsearchTypeTemp] = useState("users");
+    const [searchType, setsearchType] = useState("users");
     const [input, setInput] = useState("");
     
     const selectChange = (value: string) => { 
-      setsearchTypeTemp(value);
+      setsearchType(value);
     }
     const debouncedSearch = debounce(async (criteria) => {
       setInput(criteria);
@@ -25,7 +25,7 @@ function SearchPage() {
       <div>
       <TextInput onTextChange={inputChange} />   
       <InputDropdown onChange={selectChange} />  
-      <UserGrid searchType={searchTypeTemp} searchKey={input}/>
+      <UserGrid searchType={searchType} searchKey={input}/>
       </div>      
     )
 }
