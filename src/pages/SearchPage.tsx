@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-
+import { debounce } from "lodash";
 import 'antd/dist/antd.css';
 
 import TextInput from '../components/textInput';
@@ -8,13 +8,17 @@ import UserGrid from '../components/UserGrid';
 
 function SearchPage() {
     const [searchTypeTemp, setsearchTypeTemp] = useState("users");
+    const [input, setInput] = useState("");
+    
     const selectChange = (value: string) => { 
       setsearchTypeTemp(value);
     }
-  
-    const [input, setInput] = useState("");
-    const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
-      setInput(e.target.value);
+    const debouncedSearch = debounce(async (criteria) => {
+      setInput(criteria);
+    }, 500);
+
+    const inputChange = async (e: ChangeEvent<HTMLInputElement>) => {
+      debouncedSearch(e.target.value);
     }
 
     return (
