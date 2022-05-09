@@ -10,10 +10,9 @@ const { Meta } = Card;
 
 interface IsearchInputProps {
     searchKey: string;
-    searchType: string;
 }
 
-const UserGrid : React.FC<IsearchInputProps> = ({searchKey, searchType}) => {
+const UserGrid : React.FC<IsearchInputProps> = ({searchKey}) => {
 
   const [userList, setuserList] = useState([]);
   let mappedData:any = [];
@@ -52,6 +51,7 @@ const UserGrid : React.FC<IsearchInputProps> = ({searchKey, searchType}) => {
             return <Col span={6}>
             <Card className='grid-item'
               hoverable
+              style={{ backgroundColor: '#f0f2fa'}}
               cover={
               <img
                   alt="User Logo"
